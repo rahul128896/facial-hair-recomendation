@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recommendation Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Your Style Recommendation</h1>
+        </header>
+
+        <div class="card result-card">
+            <div class="result-grid">
+                <div class="result-image">
+                    {% if filename.endswith('.mp4') %}
+                        <video controls>
+                            <source src="{{ url_for('static', filename='uploads/' + filename) }}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% else %}
+                        <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image">
+                    {% endif %}
+                </div>
+                <div class="result-info">
+                    <div class="result-item">
+                        <h3>Detected Face Shape</h3>
+                        <p class="highlight">{{ face_shape }}</p>
+                    </div>
+                    <div class="result-item">
+                        <h3>Recommended Style</h3>
+                        <p>{{ recommendation }}</p>
+                    </div>
+                </div>
+            </div>
+            
+            <a href="/" class="secondary-btn">Try Another Photo</a>
+        </div>
+
+        <footer>
+            <p>Get your perfect hairstyle recommendation in seconds</p>
+        </footer>
+    </div>
+</body>
+</html>
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Hairstyle & Facial Hair Recommender</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Hairstyle Recommender</h1>
+            <p>Upload your photo or use the camera to get personalized recommendations</p>
+        </header>
+
+        <div class="card">
+            <div class="tabs">
+                <button class="tab-btn active" data-tab="upload">Upload Photo</button>
+                <button class="tab-btn" data-tab="camera">Use Camera</button>
+            </div>
+
+            <div class="tab-content active" id="upload-tab">
+                <div class="upload-section">
+                    <form id="uploadForm" action="{{ url_for('upload_file') }}" method="post" enctype="multipart/form-data">
+                        <div class="file-input-container">
+                            <input type="file" id="fileInput" name="file" accept="image/*" class="file-input">
+                            <label for="fileInput" class="file-label">
+                                <span class="file-icon">📁</span>
+                                <span class="file-text">Choose a file</span>
+                            </label>
+                        </div>
+                        <div class="preview-container">
+                            <img id="previewImage" class="preview" style="display: none;">
+                            <video id="previewVideo" class="preview" controls style="display: none;"></video>
+                        </div>
+                        <button type="submit" class="primary-btn">Analyze</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="tab-content" id="camera-tab">
+                <div class="camera-section">
+                    <div class="video-container">
+                        <video id="video" autoplay></video>
+                    </div>
+                    <canvas id="canvas" style="display: none;"></canvas>
+                    <button id="captureBtn" class="primary-btn">Capture & Analyze</button>
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <p>Get your perfect hairstyle recommendation in seconds</p>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
+
