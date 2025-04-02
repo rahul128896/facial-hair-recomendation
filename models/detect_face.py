@@ -2,7 +2,8 @@ import cv2
 import dlib
 import numpy as np
 
-PREDICTOR_PATH = "D:\\project\\Facial-Hair-and-Hairstyle-Recommendator-main\\models\\shape_predictor_68_face_landmarks.dat"
+PREDICTOR_PATH = "models/shape_predictor_68_face_landmarks.dat"
+
 detector = dlib.get_frontal_face_detector()
 predictor = dlib.shape_predictor(PREDICTOR_PATH)
 
